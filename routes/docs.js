@@ -28,7 +28,7 @@ var process_doc = function(path, key) {
 	});
 };
 
-var regInput = /\[(.+?)\]/g;
+var regInput = /\[(.+?)(?:\|(.+?))?\]/g;
 
 var find_inputs = function(doc) {
 	var inputs = new Array();
@@ -37,7 +37,7 @@ var find_inputs = function(doc) {
 	while(matches = regInput.exec(doc)) {
 		inputs.push({
 			key: matches[1],
-			placeholder: matches[1]
+			placeholder: matches[2] || matches[1]
 		});
 	}
 
@@ -49,7 +49,7 @@ var handle_html = function(doc, next, err, html) {
 		return console.error(err.toString());
 
 	// Replace input placeholders by handlebars placeholders
-	html = html.replace(regInput, '{{>input "$1"}}');
+	html = html.replace(regInput, '{{>input name="$1" placeholder="$2"}}');
 
 	doc.html = html;
 	next();

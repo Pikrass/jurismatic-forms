@@ -19,8 +19,10 @@ var InputView = Backbone.View.extend({
 	}
 });
 
-var input_helper = function(name, options) {
-	return '<input type="text" placeholder="'+name+'" name="'+name+'">';
+var input_helper = function(args, options) {
+	name = args['name'];
+	placeholder = args['placeholder'] || args['name'];
+	return '<input type="text" name="'+name+'" placeholder="'+placeholder+'">';
 };
 Handlebars.registerPartial('input', input_helper);
 

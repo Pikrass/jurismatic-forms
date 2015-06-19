@@ -2,27 +2,27 @@
 
 **ENTRE LES SOUSSIGNE(E)S**:
 
-**Monsieur ou Madame** **[Nom et prénom]**
+**Monsieur ou Madame** **[nom1|Nom et prénom]**
 
-Né(e) le **[date de naissance]** à **[lieu de naissance]**
+Né(e) le **[datenaiss1|date de naissance]** à **[lieunaiss1|lieu de naissance]**
 
-De nationalité **[nationalité]**
+De nationalité **[pays1|nationalité]**
 
-Exerçant la profession de **[profession]**
+Exerçant la profession de **[prof1|profession]**
 
-Demeurant **[adresse du domicile]**
+Demeurant **[dom1|adresse du domicile]**
 
 [ou]
 
-**La Société [nom de la société]**
+**La Société [soc1|nom de la société]**
 
-[forme de la société] au capital de **[capital exprimé en chiffres] euros**
+[forme1|forme de la société] au capital de **[capital1|capital exprimé en chiffres] euros**
 
-Immatriculée au RCS de **[ville]** sous le numéro **[n° du RCS]**
+Immatriculée au RCS de **[rcsvi1|ville]** sous le numéro **[rcsnum1|n° du RCS]**
 
-Dont le siège social est situé **[adresse complète du siège social]**
+Dont le siège social est situé **[siege1|adresse complète du siège social]**
 
-Représentée par **Monsieur ou Madame** **[Nom et prénom]** en qualité de **[Président ou Gérant ou Directeur Général****]**, dûment habilité aux fins des présentes,
+Représentée par **Monsieur ou Madame** **[repr1|Nom et prénom]** en qualité de **[qual1|Président ou Gérant ou Directeur Général****]**, dûment habilité aux fins des présentes,
 
 ci-après dénommé(e) la « **Partie Divulgatrice** »,
 
@@ -30,27 +30,27 @@ ci-après dénommé(e) la « **Partie Divulgatrice** »,
 
 **ET**  :
 
-**Monsieur ou Madame** **[Nom et prénom]**
+**Monsieur ou Madame** **[nom2|Nom et prénom]**
 
-Né(e) le **[date de naissance]** à **[lieu de naissance]**
+Né(e) le **[datenaiss2|date de naissance]** à **[lieunaiss2|lieu de naissance]**
 
-De nationalité **[nationalité]**
+De nationalité **[pays2|nationalité]**
 
-Exerçant la profession de **[profession]**
+Exerçant la profession de **[prof2|profession]**
 
-Demeurant **[adresse du domicile]**
+Demeurant **[dom2|adresse du domicile]**
 
 [ou]
 
-**La Société [nom de la société]**
+**La Société [soc2|nom de la société]**
 
-**[forme de la société]** au capital de **[capital exprimé en chiffres]** euros
+**[forme2|forme de la société]** au capital de **[capital2|capital exprimé en chiffres]** euros
 
-Immatriculée au RCS de **[ville]** sous le numéro **[n° du RCS]**
+Immatriculée au RCS de **[rcsvi2|ville]** sous le numéro **[rcsnum2|n° du RCS]**
 
-Dont le siège social est situé **[adresse complète du siège social]**
+Dont le siège social est situé **[siege2|adresse complète du siège social]**
 
-Représentée par **Monsieur ou Madame** **[Nom et prénom]** en qualité de **[Président ou Gérant ou Directeur Général]**, dûment habilité aux fins des présentes,
+Représentée par **Monsieur ou Madame** **[repr2|Nom et prénom]** en qualité de **[qual2|Président ou Gérant ou Directeur Général]**, dûment habilité aux fins des présentes,
 
 ci-après dénommé(e) la «  **Partie Destinataire** »,
 
@@ -104,7 +104,7 @@ Une stricte obligation de loyauté et de confidentialité à l'égard des Inform
 
 Les dispositions ci-dessus bénéficient à la Partie Divulgatrice, ainsi qu'à toute société qui se substituerait à elle dans le cadre de l'Opération visée au préambule du présent accord.
 
-Le présent accord est soumis au droit français. Tout différend entre les Parties relatif à la validité, l'interprétation ou l'exécution de celui-ci sera soumis à la compétence exclusive du Tribunal de Commerce de **[ville]****,** sauf règles impératives contraires.
+Le présent accord est soumis au droit français. Tout différend entre les Parties relatif à la validité, l'interprétation ou l'exécution de celui-ci sera soumis à la compétence exclusive du Tribunal de Commerce de **[tdc|ville]****,** sauf règles impératives contraires.
 
 Fait à **[ville]** le **[date]**,
 
