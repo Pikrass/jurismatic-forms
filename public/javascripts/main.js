@@ -78,6 +78,8 @@ var ListView = Backbone.View.extend({
 	},
 
 	render: function() {
+		$('#nav-doc').hide();
+
 		var view = this;
 		var title = document.createElement('h1');
 		title.appendChild(document.createTextNode('Documents'));
@@ -121,6 +123,16 @@ var DocView = Backbone.View.extend({
 	},
 
 	render: function() {
+		// Navbar
+		var name = this.model.get('name');
+		$('#nav-doc a').off('click');
+		$('#nav-doc a').on('click', function() {
+			Backbone.history.navigate('/docs/'+name);
+		});
+		$('#nav-doc a')[0].firstChild.data = name;
+		$('#nav-doc').show();
+
+		// Document
 		var topView = this;
 		this.$el.html(this.model.template());
 		this.$el.append(this.val);
