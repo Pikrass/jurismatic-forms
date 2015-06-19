@@ -1,12 +1,29 @@
 doctype html
 html
   head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     title Jurismatic forms
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    nav.navbar.navbar-fixed-top.navbar-inverse
+      div.container
+        div.navbar-header
+          a.navbar-brand(href="#") Jurismatic forms
+        div#navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href="#") Accueil
+
+    div.container.main-container
+      block content
+
     script(src='/jquery.min.js')
     script(src='/underscore-min.js')
     script(src='/backbone-min.js')
     script(src='/handlebars.min.js')
+    script(src='/js/bootstrap.min.js')
     block js

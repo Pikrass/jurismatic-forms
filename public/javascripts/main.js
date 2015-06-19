@@ -73,15 +73,16 @@ docs.url = '/docs';
 docs.model = Doc;
 
 var ListView = Backbone.View.extend({
-	tagName: 'ul',
-
 	initialize: function() {
 		this.listenTo(this.model, 'change', this.render);
 	},
 
 	render: function() {
 		var view = this;
-		this.$el.empty();
+		var title = document.createElement('h1');
+		title.appendChild(document.createTextNode('Documents'));
+		var list = document.createElement('ul');
+		list.className = 'list-docs';
 
 		this.model.forEach(function(doc) {
 			var li = document.createElement('li');
@@ -93,8 +94,12 @@ var ListView = Backbone.View.extend({
 					Backbone.history.navigate.bind(
 						Backbone.history, '/docs/'+doc.get('name'), {trigger:true}),
 					false);
-			view.$el.append(li);
+			list.appendChild(li);
 		});
+
+		this.$el.empty();
+		this.$el.append(title);
+		this.$el.append(list);
 
 		return this;
 	},
@@ -133,24 +138,26 @@ var DocView = Backbone.View.extend({
 
 var Router = Backbone.Router.extend({
 	routes: {
-		'':           'list_docs',
+		'(/)':           'list_docs',
 		'docs/:name': 'display_form'
 	},
 
 	list_docs: function() {
+		$('#view').empty();
+		$('#view').append(list_view.el);
+		list_view.render();
 	},
 
 	display_form: function(name) {
 		var doc_view = new DocView({model: docs.get(name)});
 		doc_view.render();
-		document.body.appendChild(doc_view.el);
+		$('#view').empty();
+		$('#view').append(doc_view.el);
 	}
 });
 
 $(function() {
 	new Router();
-	var list_view = new ListView({model: docs});
-	list_view.render();
-	document.body.appendChild(list_view.el);
+	list_view = new ListView({model: docs});
 	Backbone.history.start();
 });
