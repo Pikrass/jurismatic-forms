@@ -2,20 +2,47 @@ var FormVal = Backbone.Model.extend({
 });
 
 var InputView = Backbone.View.extend({
-	tagName: 'input',
+	tagName: 'span',
 
-	initialize: function() {
+	initialize: function(opts) {
+		this.mode = 'edit';
 		this.listenTo(this.model, 'change:value', this.render);
+		opts.val.click(this.changeMode.bind(this));
 
-		this.$el.change(function(model) {
+		this.input = opts.input;
+		$(this.input).replaceWith(this.$el);
+		this.$el.append(this.input);
+
+		$(this.input).change(function(model) {
 			model.set('value', this.value);
-		}.bind(this.el, this.model));
+		}.bind(this.input, this.model));
 	},
 
 	render: function() {
 		var val = this.model.get('value');
-		if(val != undefined)
-			this.el.value = val;
+		if(val != undefined) {
+			switch(this.mode) {
+				case 'edit':
+					this.input.value = val;
+					break;
+				case 'show':
+					this.el.firstChild.data = val;
+					break;
+			}
+		}
+	},
+
+	changeMode: function() {
+		if(this.mode == 'edit') {
+			this.mode = 'show';
+			this.el.removeChild(this.input);
+			this.$el.append(document.createTextNode(''));
+		} else {
+			this.mode = 'edit';
+			this.$el.empty();
+			this.$el.append(this.input);
+		}
+		this.render();
 	}
 });
 
@@ -74,14 +101,30 @@ var ListView = Backbone.View.extend({
 });
 
 var DocView = Backbone.View.extend({
-	render: function() {
-		var topModel = this.model; // Only for the joke
-		this.$el.html(this.model.template());
+	initialize: function() {
+		var val = document.createElement('input');
+		val.type = 'button';
+		val.id = 'val';
+		val.value = 'Valider';
+		$(val).click(function() {
+			if(val.value == 'Valider')
+				val.value = 'Editer';
+			else
+				val.value = 'Valider';
+		});
+		this.val = $(val);
+	},
 
-		this.$('input').each(function(i, elem) {
+	render: function() {
+		var topView = this;
+		this.$el.html(this.model.template());
+		this.$el.append(this.val);
+
+		this.$('input[id!="val"]').each(function(i, elem) {
 			var view = new InputView({
-				model: topModel.getFormVal(elem.name),
-				el: elem
+				model: topView.model.getFormVal(elem.name),
+				input: elem,
+				val: topView.val
 			});
 			view.render();
 		});
