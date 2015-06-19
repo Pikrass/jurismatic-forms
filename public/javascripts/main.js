@@ -7,7 +7,7 @@ var InputView = Backbone.View.extend({
 	initialize: function(opts) {
 		this.mode = 'edit';
 		this.listenTo(this.model, 'change:value', this.render);
-		opts.val.click(this.changeMode.bind(this));
+		$('#val-doc button').click(this.changeMode.bind(this));
 
 		this.input = opts.input;
 		$(this.input).replaceWith(this.$el);
@@ -79,6 +79,7 @@ var ListView = Backbone.View.extend({
 
 	render: function() {
 		$('#nav-doc').hide();
+		$('#val-doc').hide();
 
 		var view = this;
 		var title = document.createElement('h1');
@@ -108,20 +109,6 @@ var ListView = Backbone.View.extend({
 });
 
 var DocView = Backbone.View.extend({
-	initialize: function() {
-		var val = document.createElement('input');
-		val.type = 'button';
-		val.id = 'val';
-		val.value = 'Valider';
-		$(val).click(function() {
-			if(val.value == 'Valider')
-				val.value = 'Editer';
-			else
-				val.value = 'Valider';
-		});
-		this.val = $(val);
-	},
-
 	render: function() {
 		// Navbar
 		var name = this.model.get('name');
@@ -131,17 +118,17 @@ var DocView = Backbone.View.extend({
 		});
 		$('#nav-doc a')[0].firstChild.data = name;
 		$('#nav-doc').show();
+		$('#val-doc').show();
 
 		// Document
 		var topView = this;
 		this.$el.html(this.model.template());
 		this.$el.append(this.val);
 
-		this.$('input[id!="val"]').each(function(i, elem) {
+		this.$('input').each(function(i, elem) {
 			var view = new InputView({
 				model: topView.model.getFormVal(elem.name),
-				input: elem,
-				val: topView.val
+				input: elem
 			});
 			view.render();
 		});
@@ -171,5 +158,11 @@ var Router = Backbone.Router.extend({
 $(function() {
 	new Router();
 	list_view = new ListView({model: docs});
+	$('#val-doc button').click(function() {
+		if(this.firstChild.data == 'Valider')
+			this.firstChild.data = 'Editer';
+		else
+			this.firstChild.data = 'Valider';
+	});
 	Backbone.history.start();
 });
