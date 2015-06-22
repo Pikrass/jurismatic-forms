@@ -2,3 +2,8 @@
 *.sw[op]
 npm-debug.log
 node_modules/
+
+/index.html
+/javascripts/underscore-min.js
+/javascripts/backbone-min.js
+/javascripts/handlebars.min.js
