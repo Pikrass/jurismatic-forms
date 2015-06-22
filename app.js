@@ -19,18 +19,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res, next) {
-	res.render('index', {docs: docs.docs});
+	docs.doc_processor(function(processed) {
+		res.render('index', {docs: processed});
+	});
 });
 
 app.use('/docs/', docs.router);
-app.use('/', express.static(path.join(__dirname, 'node_modules/backbone/')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/backbone/node_modules/underscore')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/handlebars/dist/')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'javascripts')));
+app.use('/stylesheets/', express.static(path.join(__dirname, 'stylesheets')));
+
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/node_modules/underscore')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/handlebars/dist/')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
