@@ -26,9 +26,9 @@ app.get('/', function(req, res, next) {
 });
 
 app.use('/docs/', docs.router);
-app.use('/', express.static(path.join(__dirname, 'node_modules/backbone/')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/backbone/node_modules/underscore')));
-app.use('/', express.static(path.join(__dirname, 'node_modules/handlebars/dist/')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/node_modules/underscore')));
+app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/handlebars/dist/')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
