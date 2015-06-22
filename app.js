@@ -19,7 +19,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res, next) {
 	docs.doc_processor(function(processed) {
@@ -28,6 +27,9 @@ app.get('/', function(req, res, next) {
 });
 
 app.use('/docs/', docs.router);
+app.use('/javascripts/', express.static(path.join(__dirname, 'javascripts')));
+app.use('/stylesheets/', express.static(path.join(__dirname, 'stylesheets')));
+
 app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/')));
 app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/backbone/node_modules/underscore')));
 app.use('/javascripts/', express.static(path.join(__dirname, 'node_modules/handlebars/dist/')));
