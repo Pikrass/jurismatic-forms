@@ -7,7 +7,7 @@ var router = express.Router();
 var docsHash = {};
 var docs = new Array;
 
-var process_doc = function(path, key) {
+var process_doc = function(path, key, callback) {
 	fs.readFile(path, function(err, data) {
 		if(err)
 			return;
@@ -24,6 +24,7 @@ var process_doc = function(path, key) {
 			console.log("Processed "+key);
 			docsHash[key] = doc;
 			docs.push(doc);
+			callback(doc);
 		}));
 	});
 };
@@ -55,18 +56,34 @@ var handle_html = function(doc, next, err, html) {
 	next();
 };
 
-fs.readdir(paths.join(__dirname, '../docs'), function(err, files) {
-	if(err) {
-		console.error(err.toString());
-		process.exit(1);
+var processor = function(callback) {
+	if(docs.length > 0) {
+		callback(docs);
+		return;
 	}
 
-	for(var f in files) {
-		var basename = files[f].replace(/\..*$/, ''),
+	var nbProcessed = 0, nbFiles;
+	var process_cb = function() {
+		nbProcessed++;
+		if(nbProcessed = nbFiles)
+			callback(docs);
+	};
+
+	fs.readdir(paths.join(__dirname, '../docs'), function(err, files) {
+		if(err) {
+			console.error(err.toString());
+			process.exit(1);
+		}
+
+		nbFiles = files.length;
+
+		for(var f in files) {
+			var basename = files[f].replace(/\..*$/, ''),
 			path = paths.join(__dirname, '../docs', files[f]);
-		process_doc(path, basename);
-	}
-});
+			process_doc(path, basename, process_cb);
+		}
+	});
+}
 
 router.get('/', function(req, res) {
 	res.json(docs);
@@ -83,5 +100,5 @@ router.get('/:key', function(req, res, next) {
 
 module.exports = {
 	router: router,
-	docs: docs
+	doc_processor: processor
 };

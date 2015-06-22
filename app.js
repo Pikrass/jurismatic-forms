@@ -22,7 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res, next) {
-	res.render('index', {docs: docs.docs});
+	docs.doc_processor(function(processed) {
+		res.render('index', {docs: processed});
+	});
 });
 
 app.use('/docs/', docs.router);
