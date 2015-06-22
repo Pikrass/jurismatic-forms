@@ -17,6 +17,7 @@
     "jquery": "~2.1.4",
     "morgan": "~1.5.3",
     "pdc": "~0.2.2",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "underscore": "^1.8.3"
   }
 }
